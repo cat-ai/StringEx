@@ -604,7 +604,8 @@ public abstract class AbstractStringEx implements BaseStringEx {
 
     @Override
     public char maxBy(Comparator<Character> comparator) {
-        return 0;
+        return minMaxByHelper(Function.identity(),
+                (next, cand) -> comparator.compare(next, cand) > 0);
     }
 
     @Override
@@ -619,7 +620,8 @@ public abstract class AbstractStringEx implements BaseStringEx {
 
     @Override
     public char minBy(Comparator<Character> comparator) {
-        return minMaxByHelper(Function.identity(), null);
+        return minMaxByHelper(Function.identity(),
+                (next, cand) -> comparator.compare(next, cand) < 0);
     }
 
     @Override
